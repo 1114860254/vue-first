@@ -1,7 +1,7 @@
 <template>
 	<div id="main-wrap">
 		<div class="main-content">
-			<div class="content"></div>
+			<div class="content">111</div>
 			</div>
 		<router-view />
 	</div>
@@ -20,17 +20,23 @@
 .main-content{
 	width: 100%;
 	height: 100%;
-	padding-top:75px ;
-	padding-left:250px ;
+	padding-top:105px ;
+	padding-right: 30px;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
+	background-color: 	#F0F8FF;
 }	
 .content{
 	width: 100%;
 	height: 100%;
-	padding: 30px 30px 0 30px;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	background-color: #fff;
+}
+.open{
+	.main-content{padding-left: 280px;}
+}
+.close{
+	.main-content{padding-left:94px;}
 }
 </style>

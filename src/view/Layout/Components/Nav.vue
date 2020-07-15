@@ -2,8 +2,6 @@
 	<div id="nav-wrap">
 	<h1 class="logo"><img src="../../../assets/logo.png" alt=""></h1>
 <el-menu default-active="1-4-1" class="el-menu-vertical-demo" 
-  @open="handleOpen" 
-  @close="handleClose" 
   :collapse="isCollapse" 
   background-color="transparent" 
   text-color="#fff"active-text-color="#fff"
@@ -28,6 +26,11 @@
 	img{
 		margin: 10px auto 0; 
 		width: 90px;
+		-webkit-transition: all .3s ease 0s;
+		-moz-transition: all .3s ease 0s;
+		-o-transition: all .3s ease 0s;
+		-ms-transition: all .3s ease 0s;
+		transition: all .3s ease 0s;
 	}
 }
 
@@ -35,10 +38,27 @@
 	 position: fixed;
 	 top: 0;
 	 left: 0;
-	 width: 250px;
 	 height: 100vh;
 	 background-color: #344a5f;
-	 
+	 -webkit-transition: all .3s ease 0s;
+	 -moz-transition: all .3s ease 0s;
+	 -o-transition: all .3s ease 0s;
+	 -ms-transition: all .3s ease 0s;
+	 transition: all .3s ease 0s;
+ }
+ .open{
+	
+	 #nav-wrap{
+		 width:250px ;
+	 }
+ }
+ .close{
+	 .logo img{
+		 width:70%;
+	 };
+	 #nav-wrap{
+		 width:64px;
+	 }
  }
 </style>
 
@@ -46,24 +66,18 @@
 
   export default { 
     name:'navMenu',
+	computed:{
+		isCollapse(){
+			return this.$store.state.isCollapse
+		}
+	},
 	data() {
 		return{
-			isCollapse:false,
 			routers:this.$router.options.routes
 			
 		};
      },
     methods:{
-		
-	 handleOpen(key, keyPath){
-		        console.log(key, keyPath);
-		      },
-			  
-	 handleClose(key, keyPath){
-		        console.log(key, keyPath);
-		      }
-		    
-		
 	}
   }
 </script>

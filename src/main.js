@@ -1,5 +1,6 @@
-import store from './store.js';
+import store from './store';
 import Vue from 'vue';
+import Vuex from "vuex";
 import router from './router/index.js';
 import axios from 'axios';
 import Home from './view/Layout/Components/Nav.vue';
@@ -22,6 +23,7 @@ Vue.config.productionTip=false;
 Vue.use(ElementUI);
 new Vue({
         router,
+		store,
         render: h => h(App)
     }).$mount('#app');
 

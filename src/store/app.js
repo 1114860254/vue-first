@@ -1,11 +1,6 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import Cookie from 'cookie_js';
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
-	state:{
+const app={
+state:{
 		isCollapse:JSON.parse(sessionStorage.getItem("isCollapse"))||false
 	},
 	
@@ -21,4 +16,6 @@ export default new Vuex.Store({
 	actions:{
 		
 	}
-});
+}
+export default app;
+
