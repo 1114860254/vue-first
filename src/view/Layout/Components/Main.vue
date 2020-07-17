@@ -1,9 +1,10 @@
 <template>
 	<div id="main-wrap">
 		<div class="main-content">
-			<div class="content">111</div>
+			<div class="content">
+				<router-view/>
 			</div>
-		<router-view />
+		</div>
 	</div>
 </template>
 
@@ -29,6 +30,7 @@
 .content{
 	width: 100%;
 	height: 100%;
+	padding:30px 30px 0 30px;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	background-color: #fff;

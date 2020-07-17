@@ -2,6 +2,10 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 Vue.use(Router);
+// const originalPush = Router.prototype.push
+//    Router.prototype.push = function push(location) {
+//    return originalPush.call(this, location).catch(err => err)
+// }
 export default new Router({
 	routes:[
 		{
@@ -28,16 +32,16 @@ export default new Router({
 				name:'控制台',
 				icon:'el-icon-menu'
 			},
-			redirect:"index",
+			redirect:"/index",
 			component:()=>import("../view/Layout/index.vue"),
 			children:[
 				{
 					path:"/index",
-					name:"Index",
+					name:"index",
 					meta:{
 						name:'首页'
 					},
-					copmponent:()=>import("../view/Console/index.vue")
+					component:()=>import("../view/Console/index.vue")
 				}
 			]
 			
@@ -58,7 +62,7 @@ export default new Router({
 					meta:{
 						name:'用户管理'
 					},
-					copmponent:()=>import("../view/Info/index.vue")
+					component:()=>import("../view/Info/index.vue")
 				},
 				{
 					path:"/role",
@@ -66,15 +70,15 @@ export default new Router({
 					meta:{
 						name:'角色管理'
 					},
-					copmponent:()=>import("../view/Info/role.vue")
+					component:()=>import("../view/Info/role.vue")
 				},
 				{
-					path:"/meun",
+					path:"/menu",
 					name:"Menu",
 					meta:{
 						name:'菜单管理'
 					},
-					copmponent:()=>import("../view/Info/menu.vue")
+					component:()=>import("../view/Info/menu.vue")
 				}
 			]
 			

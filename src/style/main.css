@@ -5,3 +5,13 @@ body{
 	font-family: 'Microsoft YaHei';
 	font-size: 14px;
 }
+.el-table td ,.el-table th{
+	text-align: center;
+}
+.el-pagination span:not([class*=suffix]){
+	font-size: 8px;
+}
+.el-button--medium {
+	font-size: 10px;
+}
+.black-space-30{height: 30px;}
