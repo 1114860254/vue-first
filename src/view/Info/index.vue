@@ -52,7 +52,7 @@
 					<el-button type="danger">搜索</el-button>
 				</el-col>
 				<el-col :span="2">
-					<el-button type="danger" class="pull-right">新增</el-button>
+					<el-button type="danger" class="pull-right" @click="dialog_info=true">新增</el-button>
 				</el-col>
 		</el-row>
 		<div class="black-space-30"></div>
@@ -74,6 +74,14 @@
         prop="address"
         label="地址">
       </el-table-column>
+	<!--  <el-table-column prop="id" label="序号" width="140">
+	  </el-table-column></li>
+	  <el-table-column prop="userName" label="姓名" width="140">
+	  </el-table-column>
+	  <el-table-column prop="passWord" label="密码" >
+	  </el-table-column>
+	  <el-table-column prop="roleId" label="权限">
+	  </el-table-column> -->
 	  <el-table-column label="操作">
 		  <template slot-scope="scope">
 			  <el-button type="danger" size="small">删除</el-button>
@@ -99,15 +107,20 @@
 			</el-pagination>
 		</el-col>
 	</el-row>
+	<DialogInfo :flag.sync="dialog_info" @close="closeDialog"/>
+	
 	</div>
 </template>
 
 <script>
 	import axios from 'axios';
+	import DialogInfo from "./dialog/info.vue";
 	export default{
 		name:'user',
+		components:{DialogInfo},
 		data(){
 			return{
+				dialog_info:false,
 				options:([{
 					value:'1',
 					label:'管理员1',
@@ -130,6 +143,7 @@
 				}]),
 				search_key:'id',
 				search_keywork:'',
+				// tableData:[]
 				tableData: [{
 				            date: '2016-05-02',
 				            name: '王小虎',
@@ -155,7 +169,10 @@
 		      },
 		      handleCurrentChange(val) {
 		        console.log(`当前页: ${val}`);
-		      }
+		      },
+			  closeDialog(){
+				  dialog_info.value=false;
+			  }
 		    },
 		// methods: {
 		//     getHomeInfo () {
@@ -163,15 +180,22 @@
 		//         .then(this.getHomeInfoSucc)
 		//     },
 		//     getHomeInfoSucc (res) {
-		//       resa = res.data
-		//       if (resa.ret && resa.data) {
-		//         const data = res.data
-		//         this.id = data.id
-		//         this.userName = data.userName
-		//         this.passWord = data.passWord
-		//         this.roleId = data.roleId
+		//       res = res.data
+		//       if (res.ret && res.data) {
+		//         // const data = res.data
+		// 		tableData=res.data
+		//         this.id = tableData.id
+		//         this.userName = tableData.userName
+		//         this.passWord = tableData.passWord
+		//         this.roleId = tableData.roleId
 		//       }
-		//     }
+		//     },
+		// 	handleSizeChange(val) {
+		// 	  console.log(`每页 ${val} 条`);
+		// 	},
+		// 	handleCurrentChange(val) {
+		// 	  console.log(`当前页: ${val}`);
+		// 	}
 		//   },
 		//   mounted () {
 		//     this.getHomeInfo()
