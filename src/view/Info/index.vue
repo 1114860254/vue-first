@@ -52,7 +52,7 @@
 					<el-button type="danger">搜索</el-button>
 				</el-col>
 				<el-col :span="2">
-					<el-button type="danger" class="pull-right" @click="dialog_info=true">新增</el-button>
+					<el-button type="danger" class="pull-right" @click="dialog_info=true" >新增</el-button>
 				</el-col>
 		</el-row>
 		<div class="black-space-30"></div>
@@ -60,28 +60,14 @@
 	<el-table :data="tableData" border style="width: 100%" >
 	  <el-table-column type="selection"  width="55">
 	  </el-table-column>
-      <el-table-column
-        prop="date"
-        label="日期"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        label="地址">
-      </el-table-column>
-	<!--  <el-table-column prop="id" label="序号" width="140">
+	 <el-table-column prop="id" label="序号" width="140">
 	  </el-table-column></li>
 	  <el-table-column prop="userName" label="姓名" width="140">
 	  </el-table-column>
 	  <el-table-column prop="passWord" label="密码" >
 	  </el-table-column>
 	  <el-table-column prop="roleId" label="权限">
-	  </el-table-column> -->
+	  </el-table-column>
 	  <el-table-column label="操作">
 		  <template slot-scope="scope">
 			  <el-button type="danger" size="small">删除</el-button>
@@ -143,63 +129,31 @@
 				}]),
 				search_key:'id',
 				search_keywork:'',
-				// tableData:[]
-				tableData: [{
-				            date: '2016-05-02',
-				            name: '王小虎',
-				            address: '上海市普陀区金沙江路 1518 弄'
-				          }, {
-				            date: '2016-05-04',
-				            name: '王小虎',
-				            address: '上海市普陀区金沙江路 1517 弄'
-				          }, {
-				            date: '2016-05-01',
-				            name: '王小虎',
-				            address: '上海市普陀区金沙江路 1519 弄'
-				          }, {
-				            date: '2016-05-03',
-				            name: '王小虎',
-				            address: '上海市普陀区金沙江路 1516 弄'
-				          }]
+				tableData:null,
 			}	
 		},
-		 methods: {
-		      handleSizeChange(val) {
-		        console.log(`每页 ${val} 条`);
-		      },
-		      handleCurrentChange(val) {
-		        console.log(`当前页: ${val}`);
-		      },
-			  closeDialog(){
-				  dialog_info.value=false;
-			  }
+		methods: {
+		    getHomeInfo () {
+		      axios.get("api/user/all").then(this.getHomeInfoSucc);
 		    },
-		// methods: {
-		//     getHomeInfo () {
-		//       axios.get("api/user/all")
-		//         .then(this.getHomeInfoSucc)
-		//     },
-		//     getHomeInfoSucc (res) {
-		//       res = res.data
-		//       if (res.ret && res.data) {
-		//         // const data = res.data
-		// 		tableData=res.data
-		//         this.id = tableData.id
-		//         this.userName = tableData.userName
-		//         this.passWord = tableData.passWord
-		//         this.roleId = tableData.roleId
-		//       }
-		//     },
-		// 	handleSizeChange(val) {
-		// 	  console.log(`每页 ${val} 条`);
-		// 	},
-		// 	handleCurrentChange(val) {
-		// 	  console.log(`当前页: ${val}`);
-		// 	}
-		//   },
-		//   mounted () {
-		//     this.getHomeInfo()
-		//   }
+		    getHomeInfoSucc (res) {
+		      this.tableData = res.data
+		    },
+			handleSizeChange(val) {
+			  console.log(`每页 ${val} 条`);
+			},
+			handleCurrentChange(val) {
+			  console.log(`当前页: ${val}`);
+			},
+			closeDialog(){
+				dialog_info.value=false;
+			},
+			
+			 
+		  },
+		  mounted () {
+		    this.getHomeInfo()
+		  }
 		
 	}
 </script>
