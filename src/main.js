@@ -18,6 +18,12 @@ import style from './style/main.css'
 // 		}
 // 	}
 // })
+axios.defaults.headers.get["Content-type"]="application/json";
+axios.defaults.headers.post["Content-type"]="application/json";
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+
+Vue.prototype.$axios=axios;
 Vue.config.productionTip=false;
 
 Vue.use(ElementUI);
